@@ -1,0 +1,59 @@
+
+================================================================================
+                        Model Evaluation Report
+================================================================================
+
+Time: 2026-04-22 22:44:00
+Model: best_model.pth
+Device: cuda
+
+Overall Performance:
+────────────────────────────────────────────────────────────────
+• Total Samples: 7,178
+• Correct Predictions: 4,881
+• Wrong Predictions: 2,297
+• Overall Accuracy: 0.6800 (68.00%)
+
+Per-Class Performance:
+────────────────────────────────────────────────────────────────
+
+ANGRY       : Precision 0.641 | Recall 0.580 | F1 0.609 | Support 958
+
+DISGUST     : Precision 0.732 | Recall 0.541 | F1 0.622 | Support 111
+
+FEAR        : Precision 0.619 | Recall 0.348 | F1 0.445 | Support 1024
+
+HAPPY       : Precision 0.859 | Recall 0.871 | F1 0.865 | Support 1774
+
+SAD         : Precision 0.561 | Recall 0.585 | F1 0.573 | Support 1247
+
+SURPRISE    : Precision 0.773 | Recall 0.835 | F1 0.803 | Support 831
+
+NEUTRAL     : Precision 0.567 | Recall 0.762 | F1 0.650 | Support 1233
+
+
+Per-Class Accuracy:
+────────────────────────────────────────────────────────────────
+• angry     : 0.5804 (58.04%)
+• disgust   : 0.5405 (54.05%)
+• fear      : 0.3477 (34.77%)
+• happy     : 0.8715 (87.15%)
+• sad       : 0.5846 (58.46%)
+• surprise  : 0.8351 (83.51%)
+• neutral   : 0.7624 (76.24%)
+
+
+Error Analysis:
+────────────────────────────────────────────────────────────────
+• Total Errors: 2297
+• Error Rate: 32.00%
+• Average Error Confidence: 0.609
+
+
+Generated Files:
+────────────────────────────────────────────────────────────────
+• Confusion Matrix: evaluation_results/confusion_matrix.png
+• Classification Report: evaluation_results/classification_report.txt
+• Summary Report: evaluation_results/evaluation_summary.txt
+
+================================================================================
