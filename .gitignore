@@ -22,8 +22,6 @@ build/
 *.pt
 *.h5
 
-# Images (except train/test)
-myPhoto/
 
 # OS
 .DS_Store
