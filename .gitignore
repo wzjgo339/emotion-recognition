@@ -1,28 +1,36 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-*.egg-info/
-dist/
-build/
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-
-# PyCharm
-.idea/
-
-# VS Code
-.vscode/
-
-# Model files (large)
+# PyTorch model weights
 *.pth
-*.pt
-*.h5
 
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Results
+inference_results/
+evaluation_results/
+
+# Training artifacts
+training_history.png
+confusion_matrix.png
+data_distribution_pie_charts.png
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.idea/
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Temp webcam captures
+webcam_capture_*.jpg
+temp_webcam_frame.jpg
+
+# Environment
+.env
+*.conda
