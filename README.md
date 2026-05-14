@@ -1,68 +1,64 @@
 # 表情识别系统 (Emotion Recognition)
 
-基于深度学习的七类面部表情识别：愤怒、厌恶、恐惧、快乐、悲伤、惊讶、中性。
+基于深度学习的七类面部表情识别：`angry` · `disgust` · `fear` · `happy` · `sad` · `surprise` · `neutral`
 
 ## 模型架构
 
-- **网络结构**：CNN + SelfAttention + SEBlock
-- **输入尺寸**：48×48 灰度图像
-- **参数量**：约 4.2M
-- **准确率**：68%
-
-## 项目结构
-
-```
-.
-├── train/                      # 训练数据
-├── test/                       # 测试数据
-├── model.py                    # 模型定义
-├── train.py                    # 训练脚本
-├── inference.py                # 基础推理
-├── simple_emotion_recognition.py  # 交互界面
-├── simple_enhanced_inference.py   # 增强推理
-├── evaluate_model.py           # 模型评估
-├── show_results.py             # 结果展示
-├── quick_fix.py                # 优化训练
-├── data_loader.py              # 数据加载
-└── requirements.txt            # 依赖
-```
+| 组件 | 说明 |
+|------|------|
+| Backbone | 4 层卷积 (1→64→128→256→512) |
+| Attention | SelfAttention + SEBlock 通道注意力 |
+| Classifier | 全局平均池化 + 3 层 FC (512→256→128→7) |
+| 输入 | 48×48 灰度图像 |
+| 参数量 | ~4.2M |
+| 准确率 | 68% (FER2013 test set) |
 
 ## 快速开始
 
-### 1. 安装依赖
+### CLI 模式
+
 ```bash
 pip install -r requirements.txt
+
+# 训练
+python train.py --data_dir . --epochs 50
+
+# 单张图片识别
+python simple_enhanced_inference.py --image path/to/image.jpg
+
+# 摄像头实时识别
+python simple_enhanced_inference.py --webcam
+
+# 模型评估
+python evaluate_model.py --model best_model.pth --test_dir ./test
 ```
 
-### 2.训练模型
+### Web 模式
 
+```
+后端：FastAPI + PyTorch  (http://localhost:8000)
+前端：React + Vite      (http://localhost:5173)
+```
+
+**启动后端**（需要安装 PyTorch 的环境）：
 ```bash
-# 基础训练
-python train.py
-
-# 针对disgust/fear表情优化训练
-python quick_fix.py
+cd backend
+pip install -r requirements.txt
+# 从项目根目录启动
+uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### 3. 表情识别
-
+**启动前端**（新开终端）：
 ```bash
-# 交互界面
-python simple_emotion_recognition.py
-
-# 单张图片
-python inference.py --image path/to/image.jpg
-
-# 批量处理
-python simple_enhanced_inference.py
+cd frontend
+npm install
+npm run dev
 ```
 
-### 4. 模型评估
-```bash
-python evaluate_model.py
-python show_results.py
-```
+打开 `http://localhost:5173`，上传图片即可识别。
 
 ## 技术栈
 
-PyTorch | OpenCV | NumPy | PIL
+CLI: PyTorch · OpenCV · NumPy · Matplotlib · scikit-learn
+
+Web: FastAPI · React · Vite · TailwindCSS · Recharts
